@@ -16,35 +16,27 @@ const LoginScreen = ({ navigation }) => {
       >
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-          
+        <View style={[ { transform: [{ translateX: -10 }, { translateY: -200 }], position: "center" }]}>
+            <Image
+              source={require("../assets/logo.png")}
+              style={{
+                height: 400,
+                width: 400,
+                borderRadius: 20,
+                top: 10,
+                
+            
+                // Adjust positioning properties as needed
+              }}
+            />
+          </View>
           <View style={{
                     paddingHorizontal: 22,
                     position: "absolute",
                     top: 460,
                     width: "100%"
                 }}>
-                    <Text style={{
-                        fontSize: 50,
-                        fontWeight: 800,
-                        color: COLORS.white
-                    }}>Let's Get</Text>
-                    <Text style={{
-                        fontSize: 46,
-                        fontWeight: 800,
-                        color: COLORS.white
-                    }}>Started</Text>
-
-                    <View style={{ marginVertical: 22 }}>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.white,
-                            marginVertical: 4
-                        }}>Sri Lanka's Largest Mobile and Tech Provider</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.white,
-                        }}>Buy, Latest Devices From MobileMart.</Text>
-                    </View>
+                    
 
                     <Button
                         title="Join Now"
