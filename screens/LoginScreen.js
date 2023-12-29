@@ -4,8 +4,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 import COLORS from '../constants/colors';
 import Button from '../components/Button';
 import { Ionicons } from "@expo/vector-icons";
+import { login } from '../redux/actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 const LoginScreen = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleLogin = () => {
+      dispatch(login(username, password,navigation));
+    };
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   return (
@@ -34,13 +45,14 @@ const LoginScreen = ({ navigation }) => {
               fontWeight: 400,
               marginVertical: 8,
               color: COLORS.white,
-            }}>Email address</Text>
+            }}>Username</Text>
 
             <View style={styles.inputContainer}>
               <TextInput
-                placeholder='Enter your email address'
+                placeholder='Enter your username'
                 placeholderTextColor={COLORS.white}
-                keyboardType='email-address'
+                onChangeText={(text) => setUsername(text)}
+                value={username}
                 style={styles.input}
               />
             </View>
@@ -60,6 +72,8 @@ const LoginScreen = ({ navigation }) => {
                 placeholderTextColor={COLORS.white}
                 secureTextEntry={isPasswordShown}
                 style={styles.input}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
               />
 
               <TouchableOpacity
@@ -77,8 +91,8 @@ const LoginScreen = ({ navigation }) => {
 
           <View style={{ width: "80%", marginTop: "10%" }}>
             <Button
-              title="Join Now"
-              onPress={() => navigation.navigate("Welcome")}
+              title="Login"
+              onPress={handleLogin}
             />
 
             <View style={styles.signupContainer}>
