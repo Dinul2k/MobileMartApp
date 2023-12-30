@@ -5,6 +5,8 @@ import LoginScreen from './screens/LoginScreen';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
+import 'react-native-gesture-handler';
+
 
 
 
