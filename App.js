@@ -9,7 +9,6 @@ import 'react-native-gesture-handler';
 
 
 
-
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -33,6 +32,7 @@ const App = () => {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
+    
         {/* Add more screens as needed */}
       </Stack.Navigator>
     </NavigationContainer>

@@ -5,6 +5,7 @@ import { fetchProducts } from '../redux/actions/productActions';
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/colors';
 import { LinearGradient } from 'expo-linear-gradient';
+import MyDrawer from '../components/MyDrawer';
 
 
 
@@ -30,6 +31,8 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
+      <MyDrawer />
+
       {/* Upload Image button at the top */}
       {/* <Button title="Upload Image" onPress={handleUploadImagePress} /> */}
 
