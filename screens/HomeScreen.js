@@ -32,7 +32,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
 
       {/* Upload Image button at the top */}
-      {/* <Button title="Upload Image" onPress={handleUploadImagePress} /> */}
+      <Button title="Upload Image" onPress={handleUploadImagePress} />
       {/* FlatList to display products */}
       <FlatList
         data={products.products.products}

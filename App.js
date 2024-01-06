@@ -6,6 +6,7 @@ import store from './redux/store';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import 'react-native-gesture-handler';
+import ImageUploadScreen from './screens/ImageUploadScreen';
 
 
 
@@ -30,6 +31,11 @@ const App = () => {
          <Stack.Screen
           name="Home"
           component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="ImageUploadScreen"
+          component={ImageUploadScreen}
           options={{ headerShown: false }}
         />
     
