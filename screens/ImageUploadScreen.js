@@ -23,9 +23,11 @@ const ImageUploadScreen = () => {
 
       if (!result.cancelled) {
         const formData = new FormData();
+        console.log('FormData:', formData);
+
         formData.append('image', {
           uri: result.uri,
-          type: 'image/jpeg', // You may need to adjust the type based on the picked file
+          type: 'image/png', // You may need to adjust the type based on the picked file
           name: 'image.jpg',
         });
 
@@ -35,6 +37,7 @@ const ImageUploadScreen = () => {
       }
     } catch (error) {
       console.error('ImagePicker Error:', error);
+
     }
   };
 

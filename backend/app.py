@@ -1,36 +1,39 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import requests
+from imagekitio import ImageKit
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/upload', methods=['POST'])
+# Set your ImageKit API endpoint and private key
+imagekit_private_key = 'private_oPRiq0mEUVjx822T9EK6PeHYbmU='
+imagekit_public_key = 'public_38yA5yGVmHzsJFfSqEIBtMavEng='
+imagekit_url_endpoint = 'https://ik.imagekit.io/78dcqstv9'
+
+imagekit = ImageKit(
+    private_key=imagekit_private_key,
+    public_key=imagekit_public_key,
+    url_endpoint=imagekit_url_endpoint
+)
+
+@app.route('/upload', methods=['POST','GET'])
 def upload():
     try:
         # Get the uploaded file
         uploaded_file = request.files['file']
 
-        # Set your ImageKit API endpoint and private key
-        imagekit_url = 'https://ik.imagekit.io/78dcqstv9/upload'
-        imagekit_private_key = 'private_oPRiq0mEUVjx822T9EK6PeHYbmU='
+        # Upload image to ImageKit
+        upload_response = imagekit.upload(file=uploaded_file.stream)
 
-        # Create form data
-        form_data = {
-            'file': (uploaded_file.filename, uploaded_file.stream, uploaded_file.content_type)
-        }
-
-        # Send POST request to ImageKit API for upload
-        response = requests.post(imagekit_url, files=form_data, headers={
-            'Authorization': imagekit_private_key
-        })
-
-        # Check if the request was successful
-        if response.ok:
-            data = response.json()
-            return jsonify({'url': data['url']}), 200
-        else:
+        # Check if the upload was successful
+        if upload_response['error']:
             return jsonify({'error': 'Image Upload Failed'}), 500
+
+        # Get the ImageKit URL for the uploaded image
+        image_url = upload_response['response']['url']
+        
+        return jsonify({'url': image_url}), 200
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
